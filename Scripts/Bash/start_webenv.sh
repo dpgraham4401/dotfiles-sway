@@ -1,3 +1,4 @@
+
 #!/bin/bash
  
 if pgrep -x "httpd" >/dev/null; then

@@ -1,15 +1,16 @@
 * {
     border: none;
-    border-radius: 0;
-    /* `otf-font-awesome` is required to be installed for icons */
+    /* border-radius: 0 0 10 10;
+     `otf-font-awesome` is required to be installed for icons */
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
     min-height: 0;
+    font-weight: bold;
 }
 
 window#waybar {
-    background-color: rgba(45, 52, 39, 0.5);
-    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
+    background-color: rgba(45, 52, 39, 1);
+    border-radius: 0 0 10 10;
     border-bottom: none;
     color: #ffffff;
     transition-property: background-color;
@@ -20,32 +21,22 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
 #workspaces button {
     padding: 0 5px;
+    border-radius: 10 10 10 10;
     background-color: transparent;
     color: #ffffff;
-    border-bottom: 3px solid transparent;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit;
-    border-bottom: 3px solid #ffffff;
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    /*background-color: #64727D;*/
+    background-color: #4080bf;
+
 }
 
 #workspaces button.urgent {
@@ -76,32 +67,11 @@ window#waybar.solo {
 	background-color: transparent;
 }
 
-#idle_inhibitor.activated {
-    color: #2dcc36;
-}
-
 #pulseaudio.muted {
     color: #cc3436;
 }
 #clock {
 	font-weight: bold;
-}
-
-#battery.charging {
-    color: #2dcc36;
-}
-
-#battery.warning:not(.charging) {
-	color: #e6e600;
-}
-
-#battery.critical:not(.charging) {
-    color: #cc3436;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
 
