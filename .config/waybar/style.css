@@ -9,12 +9,12 @@
 }
 
 window#waybar {
-    background-color: rgba(45, 52, 39, 1);
+    background-color: rgba(10, 20, 15, 0.6);
     border-radius: 0 0 10 10;
     border-bottom: none;
     color: #ffffff;
     transition-property: background-color;
-    transition-duration: .5s;
+    transition-duration: .1s;
 }
 
 window#waybar.hidden {
@@ -29,13 +29,13 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: #668888;
     box-shadow: inherit;
 }
 
 #workspaces button.focused {
-    /*background-color: #64727D;*/
-    background-color: #4080bf;
+    /*background-color: #53616c;*/
+    background-color: #00802b;
 
 }
 
