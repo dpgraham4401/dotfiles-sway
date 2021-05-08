@@ -48,9 +48,9 @@ exec swayidle -w \
 ### Key bindings
 	
     ## Volume
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
-	bindsym XF86AudioMute exec pactl set-sink-mute  $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+	bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
    
 	# Media playerctl  
 	bindsym XF86AudioNext exec playerctl next
@@ -63,6 +63,9 @@ exec swayidle -w \
 	# Backlight
 	bindsym XF86MonBrightnessUp exec light -A 2
 	bindsym XF86MonBrightnessDown exec light -U 2
+
+    # Screenshot
+    bindsym print exec grim -g "$(slurp)" $HOME/Pictures/Screenshots/$(date +'screenshot_%y-%m-%d-%H:%M.png')
 
     # Leds
     bindsym XF86KbdBrightnessUp exec light -A 5 -s sysfs/leds/smc::kbd_backlight
@@ -205,4 +208,8 @@ bar {
 output HDMI-A-1 {
 	resolution 1920x1080
 	pos 1600 0
+}
+
+input "Logitech MX Keys" {
+xkb_layout br
 }
