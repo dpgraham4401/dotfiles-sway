@@ -14,6 +14,8 @@ set exrc
 set secure
 syntax on
 set number
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 highlight LineNr ctermfg=darkgray
 
 " ex sudo in vim 
@@ -76,5 +78,6 @@ call plug#begin()
 Plug 'preservim/NERDTree'
 Plug 'mgutz/gosu-colors'
 Plug 'arcticicestudio/nord-vim'
+Plug 'tmsvg/pear-tree'
 call plug#end()
 " Plug 'valloric/YouCompleteMe'

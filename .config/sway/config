@@ -19,9 +19,10 @@
    
     # Window colors
     # Class                 border  Backgr  Text    indicator   child_border
-    client.unfocused        #000000 #000000 #000000 #efeff5     #111111
-    client.focused          #000000 #000000 #003d99 #2277bb     #335555
-    client.urgent           #33ccff #33ccff #33ccff #33ccff     #33ccff
+    client.unfocused        #000000 #000000 #000000 #000000     #000000
+    client.focused          #267626 #000000 #000000 #339977     #267626
+    client.focused_inactive #000000 #000000 #000000 #000000     #404040
+    client.urgent           #33ccff #33ccff #33ccff #33ccff     #000000
 
 	# Gaps
 	gaps inner 10
@@ -39,9 +40,11 @@ exec swayidle -w \
 ### Key bindings
 	
     ## Volume
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
-    bindsym XF86AudioMute exec pactl set-sink-mute  $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% 
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle 
+    # bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    # bindsym XF86MonBrightnessUp exec brightnessctl set +5%
    
     # Media playerctl  
     bindsym XF86AudioNext exec playerctl next
