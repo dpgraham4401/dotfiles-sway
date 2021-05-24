@@ -24,6 +24,11 @@
 !.config/waybar/config
 !.config/waybar/style.css
 
+
+!.config/wofi/
+.config/wofi/*
+!.config/wofi/wofi.css
+
 !.swaylock/
 .swaylock/*
 !.swaylock/config
