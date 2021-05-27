@@ -20,6 +20,8 @@ export PS1="\[\033[1;32m\]\u@\[\033[1;34m\]\W\[\033[1;34m\] \$\[\033[0m\] "
 
 # Custom aliases
 alias ssh="kitty +kitten ssh"
+alias py="python"
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
