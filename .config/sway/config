@@ -177,11 +177,6 @@ bar {
 	workspace_buttons yes
 }
 
-### Startup commands
-	exec GDK_BACKEND=wayland
-	exec CLUTTER_BACKEND=wayland
-	exec --no-startup-id gammastep -t 5000:2500
-
 ### Input/Output devices
 output eDP-1 {
 	resolution 2560x1600
@@ -193,3 +188,10 @@ output HDMI-A-1 {
 	resolution 1920x1080
 	pos 1600 0
 }
+
+### Startup commands
+	exec GDK_BACKEND=wayland
+	exec CLUTTER_BACKEND=wayland
+	exec --no-startup-id gammastep -t 5000:2500
+    exec systemctl --user import-environment
+    exec mako

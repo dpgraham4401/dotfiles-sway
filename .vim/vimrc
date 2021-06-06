@@ -1,3 +1,4 @@
+" DG's vim config file, Hell Yeah Brother!
 " General configs
 colorscheme desert
 set tabstop=4
@@ -5,22 +6,22 @@ set shiftwidth=4
 set softtabstop=4
 set colorcolumn=110
 set encoding=utf-8
-set expandtab
 set autoindent
 set mouse=a
 set hidden
 set nowrap
 set exrc
 set secure
-syntax on
+set nohlsearch 
 set number
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+set belloff=all
+set completeopt-=preview
 highlight LineNr ctermfg=darkgray
+syntax on 
+filetype on
 
 " ex sudo in vim 
 cmap w!! w !sudo tee > /dev/null %
-
 
 " Ask to make directory if does not exist
 augroup vimrc-auto-mkdir
@@ -29,21 +30,49 @@ augroup vimrc-auto-mkdir
     function! s:auto_mkdir(dir, force)
         if !isdirectory(a:dir)
             \ && (a:force
-            \ || input("'" . a:dir . "' does not exist. Create? [y/N]") =~? '^y\%[es]$')
+            \ || input("'" . a:dir . "' does not exist. Create? [y/n]") =~? '^y\%[es]$')
 
             call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
         endif
     endfunction
 augroup END
 
+" Plugins
+call plug#begin()
+"Plug 'preservim/NERDTree'
+"Plug 'mcchrish/nnn.vim'
+Plug 'valloric/YouCompleteMe'
+Plug 'tmsvg/pear-tree'
+Plug 'dense-analysis/ale'
+Plug 'sheerun/vim-polyglot'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
 
-" Toggle paste mode with F3
-set pastetoggle=<F3>
+" Visual block
+noremap X <c-v>
 
+" save file
+map <C-s> :w<CR>
 
-" NERDTree
-map <C-n> :NERDTreeToggle<CR> | :let NERDTreeWinSize = 15 | :wincmd w
+" exit
+map <C-q> :q<CR>
 
+" move around splits
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Tree explorer
+let g:ranger_map_keys = 0
+map <C-n> :Ranger<CR> 
+
+let g:airline_theme='lucius'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_section_y = ""
 
 " Word Processor mode
 func! WordProcessorMode()
@@ -54,30 +83,21 @@ func! WordProcessorMode()
 endfu
 com! WP call WordProcessorMode()
 
-
 " Python formatting
 au BufNewFile,BufRead *.py
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
     \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
+    \ set autoindent
+
+au BufNewFile,BufRead *.{js,json}
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set tabstop=2
 
 " C/C++ configs
 nnoremap <F4> :make!<cr>
 
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+let g:ale_linters = {
+        \   'python': ['pylint'],
+        \   'javascript': ['eslint'],
+        \}
 
-" Plugins
-call plug#begin()
-Plug 'preservim/NERDTree'
-Plug 'mgutz/gosu-colors'
-Plug 'arcticicestudio/nord-vim'
-Plug 'tmsvg/pear-tree'
-call plug#end()
-" Plug 'valloric/YouCompleteMe'
