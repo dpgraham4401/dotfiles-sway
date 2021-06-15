@@ -88,7 +88,7 @@ exec swayidle -w \
 
 ### Applications shortcuts 
 	# Launcher
-	bindsym $mod+space exec --no-startup-id wofi --show run --style='/home/dg/.config/wofi/wofi.css'
+	bindsym $mod+space exec --no-startup-id wofi --show drun -I -i --style='/home/dg/.config/wofi/wofi.css'
 
 	# Start a terminal
     bindsym $mod+Return exec $term
@@ -195,7 +195,7 @@ bar {
 ### Startup commands
 	exec GDK_BACKEND=wayland
 	exec CLUTTER_BACKEND=wayland
-	exec --no-startup-id gammastep -t 5000:2700
+	exec --no-startup-id gammastep -t 4000:2700
 	#exec --no-startup-id nm-applet
 
 ### Startup Applications
