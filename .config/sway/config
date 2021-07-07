@@ -96,6 +96,10 @@ exec swayidle -w \
 	# Browser
 	bindsym $mod+Shift+f exec firefox-wayland
 
+    
+    # Explorer
+    bindsym $mod+n exec kitty sh -c "source ~/.zshrc & source ranger"
+
 ### Moving around:
     # Move your focus around
     bindsym $mod+$left focus left
@@ -187,7 +191,6 @@ bindsym $mod+r mode "resize"
 
 ### Status Bar:
 bar {
-	# Config in $HOME/.config/waybar/config    
 	swaybar_command waybar
 	workspace_buttons yes
 }
@@ -195,8 +198,9 @@ bar {
 ### Startup commands
 	exec GDK_BACKEND=wayland
 	exec CLUTTER_BACKEND=wayland
-	exec --no-startup-id gammastep -t 4000:2700
-	#exec --no-startup-id nm-applet
+    exec --no-startup-id gammastep -l 38.89511:-77.03637 -t 5000:3000
+    exec mako
+    Xwayland enable 
 
 ### Startup Applications
     exec --no-startup-id swaymsg 'Workspace 2:  ; exec /var/lib/snapd/snap/bin/spotify'

@@ -1,12 +1,7 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 25, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "temperature", "tray"],
+    "modules-center": ["clock", "idle_inhibitor"],
+    "modules-right": ["network", "pulseaudio", "temperature", "battery", "tray", "custom/power"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -26,6 +21,20 @@
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "", 
+        "max-length": 50,
+        "on-click": "kitty -e 'nmtui'"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
     "tray": {
         "icon-size": 15,
         "spacing": 10
@@ -42,11 +51,24 @@
         "format": "{}% "
     },
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         "critical-threshold": 82,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": [""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-full": "",
+        "format-icons": ["", "", "", "", ""]
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -67,49 +89,20 @@
         },
         "on-click": "pavucontrol"
     },
-    "mpd": {
-	"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
-	"format-disconnected": "Disconnected ",
-	"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-	"interval": 10,
-	"consume-icons": {
-		"on": " " // Icon shows only when "consume" is on
-	},
-	"random-icons": {
-		"off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
-		"on": " "
-	},
-	"repeat-icons": {
-		"on": " "
-	},
-	"single-icons": {
-		"on": "1 "
-	},
-	"state-icons": {
-		"paused": "",
-		"playing": ""
-	},
-	"tooltip-format": "MPD (connected)",
-	"tooltip-format-disconnected": "MPD (disconnected)"
-}
-//    "custom/spotify": {
-//        "format": " {}",
-//        "escape": true,
-//        "return-type": "json",
-//        "max-length": 40,
-//        "interval": 30, // Remove this if your script is endless and write in loop
-//        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
-//        "exec-if": "pgrep spotify"
-//    },
-//    "custom/media": {
-//        "format": "{icon} {}",
-//        "return-type": "json",
-//        "max-length": 40,
-//        "format-icons": {
-//            "spotify": "",
-//            "default": "🎜"
-//        },
-//        "escape": true,
-//        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-//    }
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    },
+
+	"custom/power": {
+		"format": "",
+		"on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Restart' 'shutdown -r now' -b 'Shutdown'  'shutdown -h now' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
+	}
 }

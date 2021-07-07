@@ -1,3 +1,4 @@
+" DG's vim config file, Hell Yeah Brother!
 " General configs
 colorscheme desert
 set tabstop=4
@@ -5,19 +6,22 @@ set shiftwidth=4
 set softtabstop=4
 set colorcolumn=110
 set encoding=utf-8
-set expandtab
 set autoindent
 set mouse=a
 set hidden
 set nowrap
 set exrc
 set secure
-syntax on 
-filetype on
+set nohlsearch 
 set number
 set belloff=all
 set completeopt-=preview
 highlight LineNr ctermfg=darkgray
+syntax enable
+filetype on
+
+" neovim additions
+set clipboard=unnamedplus
 
 " ex sudo in vim 
 cmap w!! w !sudo tee > /dev/null %
@@ -38,15 +42,19 @@ augroup END
 
 " Plugins
 call plug#begin()
-Plug 'preservim/NERDTree'
 Plug 'valloric/YouCompleteMe'
 Plug 'tmsvg/pear-tree'
 Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " Visual block
 noremap X <c-v>
+
+nnoremap ; :
 
 " save file
 map <C-s> :w<CR>
@@ -54,8 +62,8 @@ map <C-s> :w<CR>
 " exit
 map <C-q> :q<CR>
 
-" copy
-xnoremap <silent> <C-C> :w !wl-copy<CR><CR>
+" cycle buffers
+:nnoremap <Tab> :bnext<CR>
 
 " move around splits
 map <c-j> <c-w>j
@@ -63,8 +71,22 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" NERDTree
-map <C-n> :NERDTreeToggle<CR> | :let NERDTreeWinSize = 15 | :wincmd w
+" Tree explorer
+let g:ranger_map_keys = 0
+map <C-n> :Ranger<CR> 
+
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_section_y = ""
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = '|'
 
 " Word Processor mode
 func! WordProcessorMode()
@@ -77,20 +99,12 @@ com! WP call WordProcessorMode()
 
 " Python formatting
 au BufNewFile,BufRead *.py
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
     \ set textwidth=79 |
+    \ set autoindent
+
+au BufNewFile,BufRead *.{js,json}
+    \ set softtabstop=2 |
     \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
-
-au BufNewFile,BufRead *.js
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
-    \ set tabstop=2
-
-au BufNewFile,BufRead *.json
-    \ set softtabstop=2 |
     \ set shiftwidth=2 |
     \ set tabstop=2
 
@@ -101,3 +115,4 @@ let g:ale_linters = {
         \   'python': ['pylint'],
         \   'javascript': ['eslint'],
         \}
+

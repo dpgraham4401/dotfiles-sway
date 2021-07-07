@@ -2,9 +2,9 @@
 PROMPT="%F{5}%n@%F{14}%1~ %(?.%F{#00af00}√.%F{#ffffff}?%?)%F{5}> %F{#ffffff}"
 autoload -U colors && colors
 alias ssh="kitty +kitten ssh"
-export EDITOR='/usr/bin/vim'
+alias vim="nvim"
+export EDITOR='/usr/bin/nvim'
 export PATH="${PATH}:${HOME}/.local/bin/"
-(cat ~/.cache/wal/sequences &)
 
 ###~Lines configured by zsh-newuser-install~###
 HISTFILE=~/.histfile
@@ -20,6 +20,10 @@ zstyle :compinstall filename '/home/dg/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+export ZSH="/home/dg/.oh-my-zsh"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
 
 
 ###-begin-npm-completion-###

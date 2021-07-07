@@ -5,6 +5,7 @@
 !.bashrc
 !.gitignore
 !.zshrc
+!.p10k.zsh
 
 !.vim/
 .vim/*
@@ -16,6 +17,14 @@
 .config/sway/*
 !.config/sway/config
 
+!.config/nvim/
+.config/nvim/*
+!.config/nvim/init.vim
+
+!.config/mako/
+.config/mako/*
+!.config/mako/config
+
 !.config/kitty/
 .config/kitty/*
 !.config/kitty/kitty.conf
@@ -25,10 +34,13 @@
 !.config/waybar/config
 !.config/waybar/style.css
 
-
-!.config/wofi/
-.config/wofi/*
-!.config/wofi/wofi.css
+!.config/ranger/
+.config/ranger/*
+!.config/ranger/rc.conf
+!.config/ranger/commands.py
+!.config/ranger/rifle.conf
+!.config/ranger/commands_full.py
+!.config/ranger/scope.sh
 
 !.swaylock/
 .swaylock/*
@@ -39,3 +51,4 @@ Scripts/*
 !Scripts/Bash
 Scripts/Bash/*
 !Scripts/Bash/start_webenv.sh
+
